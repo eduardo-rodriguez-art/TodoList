@@ -13,7 +13,7 @@
 		D724948D26ADE01D000C7299 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D724948B26ADE01D000C7299 /* LaunchScreen.storyboard */; };
 		D724949826ADE077000C7299 /* TodoeyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724949726ADE077000C7299 /* TodoeyTableViewController.swift */; };
 		D724949B26ADE0A3000C7299 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D724949A26ADE0A3000C7299 /* Main.storyboard */; };
-		D72494A226ADEBAC000C7299 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72494A126ADEBAC000C7299 /* Constans.swift */; };
+		D7B0632426B20FB50097DA05 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B0632326B20FB50097DA05 /* ItemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		D724948E26ADE01D000C7299 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D724949726ADE077000C7299 /* TodoeyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoeyTableViewController.swift; sourceTree = "<group>"; };
 		D724949A26ADE0A3000C7299 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D72494A126ADEBAC000C7299 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
+		D7B0632326B20FB50097DA05 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 		D724949E26ADEB69000C7299 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D72494A126ADEBAC000C7299 /* Constans.swift */,
+				D7B0632326B20FB50097DA05 /* ItemModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 			files = (
 				D724948126ADE01C000C7299 /* AppDelegate.swift in Sources */,
 				D724948326ADE01C000C7299 /* SceneDelegate.swift in Sources */,
-				D72494A226ADEBAC000C7299 /* Constans.swift in Sources */,
+				D7B0632426B20FB50097DA05 /* ItemModel.swift in Sources */,
 				D724949826ADE077000C7299 /* TodoeyTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

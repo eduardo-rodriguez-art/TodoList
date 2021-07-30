@@ -9,16 +9,33 @@ import UIKit
 //* Estudiar secuencia de eventos
 class TodoeyTableViewController: UITableViewController {
 
-    var daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday", "Saturday", "Sunday"]
+    var toDoItem = [ItemModel]()
+    /// User Defaults Constant
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Todoey List"
-                // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        let item = ItemModel()
+        item.toDoTitle = "Buy eggs"
+        item.done = true
+        toDoItem.append(item)
+        let item2 = ItemModel()
+        item2.toDoTitle = "Study Swift"
+        item2.done = false
+        toDoItem.append(item2)
+        let item3 = ItemModel()
+        item3.toDoTitle = "Study Python"
+        item3.done = true
+        toDoItem.append(item3)
+        
+        // Recuperar datos del user defaults
+//        if let myItems = defaults.array(forKey: "ToDoListArray") as? [String] {
+//            toDoItem = myItems
+//            defaults.synchronize()
+//        }
+        
     }
 
     // MARK: - Table view data source
@@ -28,66 +45,43 @@ class TodoeyTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return daysOfWeek.count
+        return toDoItem.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //let cell = UITableViewCell(style: .default, reuseIdentifier: "ReusableCell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath)
-        //let days = daysOfWeek[indexPath.row]
-        cell.textLabel?.text = daysOfWeek[indexPath.row]
+        cell.textLabel?.text = toDoItem[indexPath.row].toDoTitle
+        // Add a checkmark to each cell; ternary operator ==>
+        // value = condition ? valueIfTrue : valueIfFalse
+        let item = toDoItem[indexPath.row]
+        cell.accessoryType = item.done ? .checkmark : .none
+        
+        /*if toDoItem[indexPath.row].done == true {
+            cell.accessoryType = .checkmark
+        } else { cell.accessoryType = .none }*/
+        
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    } */
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     //MARK: - Table view delegate method
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // Add a checkmark to each cell
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else { // Unmark and mark each cell
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+        // Change the Done property if we selected a cell
+        toDoItem[indexPath.row].done = !toDoItem[indexPath.row].done
+        /*if toDoItem[indexPath.row].done == false {
+            toDoItem[indexPath.row].done = true
+        } else { toDoItem[indexPath.row].done = false }*/
         
+        tableView.reloadData()
         // unselected the cell
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         self.presentAnAlert(titleAlert: "Add new todey item", titleAlertAction: "Add a item")
+        //defaults.removeObject(forKey: "ToDoListArray")
+        //defaults.synchronize()
     }
     
     //MARK: - My Functions
@@ -99,11 +93,16 @@ class TodoeyTableViewController: UITableViewController {
         
         let action = UIAlertAction(title: titleAction, style: .default) { (action) in
             // what will happen once the user clicks the Add item action on our UIAlert
+            let newItem = ItemModel()
+            newItem.toDoTitle = textField.text!
+            // we become the array to a objects array
             if textField.text != nil {
-                self.daysOfWeek.append(textField.text ?? "")
+                self.toDoItem.append(newItem)
+                // Save in user defaults
+                self.defaults.set(self.toDoItem, forKey: "ToDoListArray")
                 self.tableView.reloadData()
             } else {
-                print("Nothing were add")
+                print("Nothing were added")
             }
             
         }
