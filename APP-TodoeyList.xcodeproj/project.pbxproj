@@ -58,9 +58,9 @@
 		D724947F26ADE01C000C7299 /* APP-TodoeyList */ = {
 			isa = PBXGroup;
 			children = (
-				D72494A026ADEB74000C7299 /* Controller */,
-				D724949F26ADEB6F000C7299 /* View */,
 				D724949E26ADEB69000C7299 /* Model */,
+				D724949F26ADEB6F000C7299 /* View */,
+				D72494A026ADEB74000C7299 /* Controller */,
 				D724948026ADE01C000C7299 /* AppDelegate.swift */,
 				D724948226ADE01C000C7299 /* SceneDelegate.swift */,
 				D724948926ADE01D000C7299 /* Assets.xcassets */,

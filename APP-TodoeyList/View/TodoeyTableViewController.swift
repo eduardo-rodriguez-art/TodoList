@@ -8,7 +8,7 @@
 import UIKit
 //* Estudiar secuencia de eventos
 class TodoeyTableViewController: UITableViewController {
-
+    
     var toDoItem = [ItemModel]()
     /// User Defaults Constant
     let defaults = UserDefaults.standard
@@ -31,10 +31,10 @@ class TodoeyTableViewController: UITableViewController {
         toDoItem.append(item3)
         
         // Recuperar datos del user defaults
-//        if let myItems = defaults.array(forKey: "ToDoListArray") as? [String] {
-//            toDoItem = myItems
-//            defaults.synchronize()
-//        }
+        if let myItems = defaults.array(forKey: "ToDoListArray") as? [ItemModel] {
+            toDoItem = myItems
+            defaults.synchronize()
+        }
         
     }
 
